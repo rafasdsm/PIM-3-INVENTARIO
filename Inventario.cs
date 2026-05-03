@@ -49,5 +49,46 @@ namespace PIM_3_INVENTARIO
                 Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name}, Categoria: {produto.Category.categorianame}, Validade: {produto.Validade.ToShortDateString()}, Vencido: {(produto.Vencido ? "Sim" : "Não")}");
             }
         }
+        public void RemoverProduto(int id)
+        {
+            var produto = lista_produtos.FirstOrDefault(p => p.Id == id);
+            if (produto != null)
+            {
+                lista_produtos.Remove(produto);
+                Console.WriteLine($"Produto com ID {id} removido.");
+                return;
+            }
+            var produtoPerecivel = lista_produtosp.FirstOrDefault(p => p.Id == id);
+            if (produtoPerecivel != null)
+            {
+                lista_produtosp.Remove(produtoPerecivel);
+                Console.WriteLine($"Produto perecível com ID {id} removido.");
+                return;
+            }
+            Console.WriteLine($"Produto com ID {id} não encontrado.");
+        }
+        public void ListarVencidos()
+        {
+            foreach(var produto in lista_produtosp.Where(p => p.Vencido))
+            {
+                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name}, Categoria: {produto.Category.categorianame}, Validade: {produto.Validade.ToShortDateString()}");
+            }
+        }
+        public void RemoverCategoria(int id)
+        {
+            var categoria = lista_categorias.FirstOrDefault(c => c.categoriaid == id);
+            if (categoria != null)
+            {
+                // Remove produtos associados à categoria
+                lista_produtos.RemoveAll(p => p.Category.categoriaid == id);
+                lista_produtosp.RemoveAll(p => p.Category.categoriaid == id);
+                lista_categorias.Remove(categoria);
+                Console.WriteLine($"Categoria com ID {id} e seus produtos associados foram removidos.");
+            }
+            else
+            {
+                Console.WriteLine($"Categoria com ID {id} não encontrada.");
+            }
+        }
     }
 }

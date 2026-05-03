@@ -9,9 +9,9 @@ namespace PIM_3_INVENTARIO
     {
         static void Main(string[] args)
         {
+            // inicializa o inventário e cria as categorais e produtos
             Inventario inventario = new Inventario();
 
-            // Categorias Comuns
             Categoria catGraos = new Categoria()
             {
                 categoriaid = 1,
@@ -34,7 +34,7 @@ namespace PIM_3_INVENTARIO
             };
 
             List<Categoria> categorias = new List<Categoria> {
-                catDesc,catDesc,catLaticinio,catPadaria
+                catGraos,catDesc,catLaticinio,catPadaria
             };
 
             // --- 10 PRODUTOS NÃO PERECÍVEIS ---
@@ -67,6 +67,8 @@ namespace PIM_3_INVENTARIO
                 new ProdutoPerecivel { Id = 20, Name = "Sanduíche Natural", Description = "Frango com maionese", Qnt = 12, Category = catPadaria, Validade = new DateTime(2025, 05, 05) }
             };
 
+
+            // adiciona no inventário as categorias e produtos criados
             foreach (var cat in categorias)
             {
                 inventario.CadastrarCategoria(cat);
@@ -80,9 +82,9 @@ namespace PIM_3_INVENTARIO
             {
                 inventario.CadastrarProdutoPerecivel(prod);
             }
-
-            inventario.ListarProdutos();
-            inventario.ListarProdutosPereciveis();
+    
+            UI ui = new UI();
+            ui.Escolhas(inventario);
         }
     }
 }
