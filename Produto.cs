@@ -10,7 +10,7 @@ namespace PIM_3_INVENTARIO
         private string name = string.Empty;
         private string description = "Produto sem descrição";
         private int qnt;
-        private string category = string.Empty;
+        private Categoria category = null;
 
         public string Name
         {
@@ -30,13 +30,10 @@ namespace PIM_3_INVENTARIO
             set { if (value >= 0) qnt = value; }
         }
 
-        public string Category
+        public Categoria Category
         {
             get => category;
-            set
-            {
-
-            }
+            set { if (value != null) category = value; }
         }
     }
 
