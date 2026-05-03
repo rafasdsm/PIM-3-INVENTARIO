@@ -90,5 +90,6 @@ namespace PIM_3_INVENTARIO
                 Console.WriteLine($"Categoria com ID {id} não encontrada.");
             }
         }
+     
     }
 }

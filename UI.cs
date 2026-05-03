@@ -202,6 +202,8 @@ namespace PIM_3_INVENTARIO
             Console.WriteLine("\nPressione qualquer tecla para continuar...");
             Console.ReadLine();
         }
+
+
         public void Escolhas(Inventario inventario) {
             while (true)
             {
