@@ -227,6 +227,35 @@ namespace PIM_3_INVENTARIO
             }
         }
 
+        public void ModificarQuantidade(Inventario inventario)
+        {
+            inventario.ListarProdutos();
+            inventario.ListarProdutosPereciveis();
+            Console.WriteLine("=== Modificar Quantidade em Estoque ===");
+            Console.Write("Digite o ID do produto: ");
+
+            if (int.TryParse(Console.ReadLine(), out int id))
+            {
+                Console.Write("Digite a nova quantidade total em estoque: ");
+                if (int.TryParse(Console.ReadLine(), out int novaSub))
+                {
+                    // Chama o método focado apenas em quantidade
+                    inventario.AtualizarEstoque(id, novaSub);
+                }
+                else
+                {
+                    Console.WriteLine("Quantidade inválida.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("ID inválido.");
+            }
+
+            Console.WriteLine("\nPressione qualquer tecla para continuar...");
+            Console.ReadKey();
+        }
+
 
         public void Escolhas(Inventario inventario) {
             while (true)
@@ -239,6 +268,7 @@ namespace PIM_3_INVENTARIO
                 Console.WriteLine("5 - Listar produtos vencidos");
                 Console.WriteLine("6 - Remover produto");
                 Console.WriteLine("7 - Adicionar produto");
+                Console.WriteLine("8 - Editar produto");
                 string escolha = Console.ReadLine();
                 switch (escolha) {
                     case "1":
@@ -274,6 +304,10 @@ namespace PIM_3_INVENTARIO
                         Console.WriteLine("\n\n");
 
                         CadastrarProdutos(inventario);
+                        break;
+                    case "8":
+                        Console.WriteLine("\n\n");
+                        ModificarQuantidade(inventario);
                         break;
                     default:
                         Console.WriteLine("\n\n");

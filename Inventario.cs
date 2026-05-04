@@ -39,14 +39,14 @@ namespace PIM_3_INVENTARIO
         {
             foreach (var produto in lista_produtos)
             {
-                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}");
+                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}, Quantidade: {produto.Qnt}");
             }
         }
         public void ListarProdutosPereciveis()
         {
             foreach (var produto in lista_produtosp)
             {
-                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}, Validade: {produto.Validade.ToShortDateString()}, Vencido: {(produto.Vencido ? "Sim" : "Não")}");
+                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}, Validade: {produto.Validade.ToShortDateString()}, Vencido: {(produto.Vencido ? "Sim" : "Não")}, , Disponivel: {produto.disponivel}, Quantidade: {produto.Qnt}");
             }
         }
         public void RemoverProduto(int id)
@@ -97,7 +97,7 @@ namespace PIM_3_INVENTARIO
             {
                 if(produto.Category.categoriaid == id)
                 {
-                    Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}");
+                    Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}, Quantidade: {produto.Qnt}");
                     cont = cont + 1;
                 }
             }
@@ -105,7 +105,7 @@ namespace PIM_3_INVENTARIO
             {
                 if(produto.Category.categoriaid == id)
                 {
-                    Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}");
+                    Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}, Quantidade: {produto.Qnt}");
                     cont = cont + 1;
                 }
             }
@@ -113,6 +113,28 @@ namespace PIM_3_INVENTARIO
             {
                 Console.WriteLine("Nenhum produto com essa categoria foi encontrado!");
             }
+        }
+        public void AtualizarEstoque(int id, int novaQuantidade)
+        {
+            // Procura na lista de produtos comuns
+            var produto = lista_produtos.FirstOrDefault(p => p.Id == id);
+            if (produto != null)
+            {
+                produto.Qnt = novaQuantidade;
+                Console.WriteLine($"Estoque do produto '{produto.Name}' atualizado para {novaQuantidade}.");
+                return;
+            }
+
+            // Procura na lista de produtos perecíveis
+            var produtoP = lista_produtosp.FirstOrDefault(p => p.Id == id);
+            if (produtoP != null)
+            {
+                produtoP.Qnt = novaQuantidade;
+                Console.WriteLine($"Estoque do produto perecível '{produtoP.Name}' atualizado para {novaQuantidade}.");
+                return;
+            }
+
+            Console.WriteLine("Erro: Produto não encontrado.");
         }
     }
 }

@@ -11,6 +11,7 @@ namespace PIM_3_INVENTARIO
         private string description = "Produto sem descrição";
         private int qnt;
         private Categoria category = null;
+        public bool disponivel => qnt >0;
 
         public string Name
         {
