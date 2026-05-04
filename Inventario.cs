@@ -39,14 +39,14 @@ namespace PIM_3_INVENTARIO
         {
             foreach (var produto in lista_produtos)
             {
-                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name}, Categoria: {produto.Category.categorianame}");
+                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}");
             }
         }
         public void ListarProdutosPereciveis()
         {
             foreach (var produto in lista_produtosp)
             {
-                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name}, Categoria: {produto.Category.categorianame}, Validade: {produto.Validade.ToShortDateString()}, Vencido: {(produto.Vencido ? "Sim" : "Não")}");
+                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}, Validade: {produto.Validade.ToShortDateString()}, Vencido: {(produto.Vencido ? "Sim" : "Não")}");
             }
         }
         public void RemoverProduto(int id)
