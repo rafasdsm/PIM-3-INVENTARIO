@@ -203,6 +203,30 @@ namespace PIM_3_INVENTARIO
             Console.ReadLine();
         }
 
+        public void ListarPorCategoria(Inventario inventario)
+        {
+            string escolha = "";
+            while(true)
+                {
+                inventario.ListarCategorias();
+                Console.WriteLine("Qual a categoria a ser procurada?[ID]: ");
+                escolha = Console.ReadLine();
+                if(int.TryParse(escolha, out int id))
+                {
+                       Console.WriteLine("\n\n");
+                       inventario.ListarporCategoria(id);
+                       Console.WriteLine("\n\nPressione qualquer tecla para voltar ao menu principal.");
+                       Console.ReadLine();
+                       break;
+                    
+                }
+                else
+                {
+                    Console.WriteLine("Digite um id válido");
+                }
+            }
+        }
+
 
         public void Escolhas(Inventario inventario) {
             while (true)
@@ -224,7 +248,7 @@ namespace PIM_3_INVENTARIO
                     case "2":
                         Console.WriteLine("\n\n");
 
-                        ListarProdutosPereciveis(inventario);
+                        ListarProdutos(inventario);
                         break;
                     case "3":
                         Console.WriteLine("\n\n");
@@ -234,7 +258,7 @@ namespace PIM_3_INVENTARIO
                     case "4":
                         Console.WriteLine("\n\n");
 
-                        ListarCategorias(inventario);
+                        ListarPorCategoria(inventario);
                         break;
                     case "5":
                         Console.WriteLine("\n\n");

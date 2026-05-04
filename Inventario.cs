@@ -90,6 +90,29 @@ namespace PIM_3_INVENTARIO
                 Console.WriteLine($"Categoria com ID {id} não encontrada.");
             }
         }
-     
+        public void ListarporCategoria(int id)
+        {
+            int cont = 0;
+            foreach(Produto produto in lista_produtos)
+            {
+                if(produto.Category.categoriaid == id)
+                {
+                    Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}");
+                    cont = cont + 1;
+                }
+            }
+            foreach(ProdutoPerecivel produto in lista_produtosp)
+            {
+                if(produto.Category.categoriaid == id)
+                {
+                    Console.WriteLine($"ID: {produto.Id}, Nome: {produto.Name},  Descrição: {produto.Description}, Categoria: {produto.Category.categorianame}");
+                    cont = cont + 1;
+                }
+            }
+            if(cont == 0)
+            {
+                Console.WriteLine("Nenhum produto com essa categoria foi encontrado!");
+            }
+        }
     }
 }
